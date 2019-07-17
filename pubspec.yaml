@@ -5,13 +5,9 @@ author: Adrian <atreeonhill@gmail.com>
 homepage: https://github.com/twistedinferno/redux_combine2
 
 environment:
-  sdk: ">=2.0.0-dev.28.0 <3.0.0"
+  sdk: ">=2.3.0 <3.0.0"
 
 dependencies:
   redux: ">=3.0.0 <4.0.0"
-  flutter:
-    sdk: flutter
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
