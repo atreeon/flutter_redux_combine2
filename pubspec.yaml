@@ -1,6 +1,6 @@
 name: flutter_redux_combine2
 description: An add on for redux_flutter to add additional data to a typed reducer
-version: 0.2.0
+version: 0.2.1
 author: Adrian <atreeonhill@gmail.com>
 homepage: https://github.com/twistedinferno/redux_combine2
 
@@ -9,5 +9,3 @@ environment:
 
 dependencies:
   redux: 4.0.0
-
-dev_dependencies:
