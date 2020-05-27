@@ -1,10 +1,34 @@
 import 'package:redux/redux.dart';
 
-Reducer2<StateOut, StateIn2> combineReducers2<StateOut, StateIn2>(
-    Iterable<Reducer2<StateOut, StateIn2>> reducers2, Iterable<Reducer<StateOut>> reducers) {
+fn_Reducer2<StateOut, StateIn2> combineReducers2<StateOut, StateIn2>(
+  Iterable<fn_Reducer2<StateOut, StateIn2>> reducers2,
+  Iterable<Reducer<StateOut>> reducers,
+) {
   return (StateOut state, StateIn2 stateIn2, dynamic action) {
     for (final reducer in reducers2) {
       state = reducer(state, stateIn2, action);
+    }
+
+    for (final reducer in reducers) {
+      state = reducer(state, action);
+    }
+
+    return state;
+  };
+}
+
+fn_Reducer3<StateOut, StateIn2, StateIn3> combineReducers3<StateOut, StateIn2, StateIn3>(
+  Iterable<fn_Reducer2<StateOut, StateIn2>> reducers2,
+  Iterable<fn_Reducer2<StateOut, StateIn3>> reducers3,
+  Iterable<Reducer<StateOut>> reducers,
+) {
+  return (StateOut state, StateIn2 stateIn2, StateIn3 stateIn3, dynamic action) {
+    for (final reducer in reducers2) {
+      state = reducer(state, stateIn2, action);
+    }
+
+    for (final reducer in reducers3) {
+      state = reducer(state, stateIn3, action);
     }
 
     for (final reducer in reducers) {
@@ -24,7 +48,6 @@ class TypedReducer2<StateCore, StateIn, Action> implements ReducerClass2<StateCo
 
   TypedReducer2(this.reducer);
 
-  @override
   StateCore call(StateCore stateCore, StateIn stateIn, dynamic action) {
     if (action is Action) {
       return reducer(stateCore, stateIn, action);
@@ -34,4 +57,15 @@ class TypedReducer2<StateCore, StateIn, Action> implements ReducerClass2<StateCo
   }
 }
 
-typedef StateOut Reducer2<StateOut, StateIn2>(StateOut state, StateIn2 stateIn2, dynamic action);
+typedef StateOut fn_Reducer2<StateOut, StateIn2>(
+  StateOut state,
+  StateIn2 stateIn2,
+  dynamic action,
+);
+
+typedef StateOut fn_Reducer3<StateOut, StateIn2, StateIn3>(
+  StateOut state,
+  StateIn2 stateIn2,
+  StateIn3 stateIn3,
+  dynamic action,
+);
